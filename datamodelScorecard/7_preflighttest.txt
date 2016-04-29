@@ -1,0 +1,16 @@
+This test is good as a sanity check, but does not provide any results that are actionable
+for the project team. 
+
+Any issues found by this test would need to be forwarded to the DBA team, because they are
+responsible for keeping the infrastructure working. They are also very conservative about
+changing things at this time, because it appears they are about to enter a new 
+development and test cycle. 
+
+
+I would propose that we remove this test, but use the python scripts as models for 
+automating some of our performance checks. 
+
+What would be a good replacement for this item so we still have 10 points on which to 
+base the report card? 
+
+

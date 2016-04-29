@@ -1,0 +1,39 @@
+USAGE
+==========
+
+
+
+
+EXAMPLES
+==========
+- see Assessment, 20150505 Data model test, test.xls, nice-564 tab for visual examples of partitions with “hot spots”
+- see Assessment, 20150505 Data model test, test.xls, nice-565 tab for visual examples of "two hump latency"
+
+
+
+NOTES
+===========
+Hot spots:
+hot spots can be monitored in JMX and with nodetool cfstats utility at the keyspace level
+
+
+
+Read Latency: 
+- If using Leveled compaction and SSDs, read latency should be < 5 us per SSTable 
+seek. 
+- Concurrency pipeline should have queue depth of 6. ((todo: find out where to see this
+setting ))
+- Histogram read latency should have majority of groups be 130 us or less. Double digits are not uncommon if using SSDs
+
+
+
+Write Latency:
+
+- If using Leveled compaction and SSDs, peak (longest latency) should be < 150 us. 
+The C* write path writes to memory first, so this latency should stay constant regardless of the 
+amount of data in storage. Higher values indicate problems with Data Model or Disk I/O 
+problems - possibly underprovisioning
+
+
+
+

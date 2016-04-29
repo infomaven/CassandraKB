@@ -1,0 +1,11 @@
+examples:
+============
+
+
+
+
+
+notes:
+============
+- use prepared statements rather than free-form CQL. This gives you free speed upgrade. 
+The query gets cached on every node in the cluster.

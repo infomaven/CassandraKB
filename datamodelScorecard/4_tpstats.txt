@@ -1,0 +1,5 @@
+Nodetool –host 172.31.12.129 tpstats
+
+Threadpool statistics
+
+http://docs.datastax.com/en/cassandra/2.1/cassandra/tools/toolsTPstats.html

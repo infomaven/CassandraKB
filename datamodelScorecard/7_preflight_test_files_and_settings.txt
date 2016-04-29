@@ -1,0 +1,1247 @@
+Last login: Tue Jun  9 22:10:03 on ttys000
+Proxy environment variable set to ON. Turn it off by calling the proxy_off function.
+No such directory /Users/nwhit8/Volumes/secondary/libs/dsc-cassandra-2.0.12/bin
+nwhitbm1:~ nwhit8$ cloud workout-test 52.10.219.225
+Enter AD username: nwhit8	
+Enter AD password: 
+Would you like to save these credentials in the Keychain? (y/n): y
+Saving...done
+Free port: 64067
+SOCKS port: 64068
+Username: kratos
+--------------SSH SESSION START--------------
+
+Last login: Tue Jun  9 13:20:14 2015 from ec2-54-201-168-31.us-west-2.compute.amazonaws.com
+[kratos@ip-172-31-8-84 ~]$ 
+[kratos@ip-172-31-8-84 ~]$ DESCRIBE keyspaces;
+-bash: DESCRIBE: command not found
+[kratos@ip-172-31-8-84 ~]$ nodetool --host 172.31.8.84 ring
+Note: Ownership information does not include topology; for complete information, specify a keyspace
+
+Datacenter: us-west-2
+==========
+Address        Rack        Status State   Load            Owns                Token                                       
+                                                                              155962751505430129087380028408194469803     
+52.11.17.102   2a          Up     Normal  15.69 GB        8.33%               1967372893                                  
+52.10.222.200  2b          Up     Normal  15.9 GB         8.33%               14178431955039102644307275311624381713      
+52.11.237.195  2c          Up     Normal  16.12 GB        8.33%               28356863910078205288614550621281390513      
+52.25.138.180  2a          Up     Normal  16.43 GB        8.33%               42535295865117307932921825930938399323      
+52.10.20.50    2c          Up     Normal  15.75 GB        8.33%               56713727820156410577229101240595408135      
+52.24.190.53   2b          Up     Normal  15.92 GB        8.33%               70892159775195513221536376550252416943      
+52.25.83.116   2a          Up     Normal  19.12 GB        8.33%               85070591730234615865843651859909425756      
+52.26.12.252   2b          Up     Normal  19.19 GB        8.33%               99249023685273718510150927169566434573      
+52.24.84.233   2c          Up     Normal  19.45 GB        8.33%               113427455640312821154458202479223443373     
+52.10.251.50   2a          Up     Normal  19.74 GB        8.33%               127605887595351923798765477788880452183     
+52.10.114.81   2b          Up     Normal  19.34 GB        8.33%               141784319550391026443072753098537460993     
+52.10.219.225  2c          Up     Normal  16.43 GB        8.33%               155962751505430129087380028408194469803     
+
+[kratos@ip-172-31-8-84 ~]$ nodetool --host 172.31.8.84 info
+Token            : 155962751505430129087380028408194469803
+ID               : 8c758b54-655f-4a72-bc95-2c8f001080b7
+Gossip active    : true
+Thrift active    : true
+Native Transport active: true
+Load             : 16.43 GB
+Generation No    : 1424724664
+Uptime (seconds) : 9189396
+Heap Memory (MB) : 3079.12 / 7987.25
+Data Center      : us-west-2
+Rack             : 2c
+Exceptions       : 8
+Key Cache        : size 104855172 (bytes), capacity 104857600 (bytes), 466118715 hits, 467643544 requests, NaN recent hit rate, 14400 save period in seconds
+Row Cache        : size 0 (bytes), capacity 0 (bytes), 0 hits, 0 requests, NaN recent hit rate, 0 save period in seconds
+[kratos@ip-172-31-8-84 ~]$ less /etc/dse/cassandra
+[kratos@ip-172-31-8-84 ~]$ cd /etc/dse/cassandra
+[kratos@ip-172-31-8-84 cassandra]$ ls
+cassandra-env.sh                cqlshrc.sample.ssl
+cassandra-rackdc.properties     log4j-no-op.properties
+cassandra-topology.properties   log4j-server.properties
+cassandra-topology.yaml         log4j-tools.properties
+cassandra.yaml                  metrics-graphite.yaml
+commitlog_archiving.properties  metrics-reporter-config-sample.yaml
+cqlshrc.default                 README.txt
+cqlshrc.sample                  schema-sample.txt
+cqlshrc.sample.kerberos         triggers
+cqlshrc.sample.kerberos_ssl
+[kratos@ip-172-31-8-84 cassandra]$ less cassandra.yaml
+[kratos@ip-172-31-8-84 cassandra]$ less metrics-graphite.yaml 
+[kratos@ip-172-31-8-84 cassandra]$ less cassandra-env.sh 
+[kratos@ip-172-31-8-84 cassandra]$ 
+[kratos@ip-172-31-8-84 cassandra]$ clear
+
+[kratos@ip-172-31-8-84 cassandra]$ cd /var/log/cassandra/
+[kratos@ip-172-31-8-84 cassandra]$ ls
+audit               system.log.15  system.log.25  system.log.35  system.log.45
+audit.log           system.log.16  system.log.26  system.log.36  system.log.46
+output.log          system.log.17  system.log.27  system.log.37  system.log.47
+solrvalidation.log  system.log.18  system.log.28  system.log.38  system.log.48
+system.log          system.log.19  system.log.29  system.log.39  system.log.49
+system.log.1        system.log.2   system.log.3   system.log.4   system.log.5
+system.log.10       system.log.20  system.log.30  system.log.40  system.log.50
+system.log.11       system.log.21  system.log.31  system.log.41  system.log.6
+system.log.12       system.log.22  system.log.32  system.log.42  system.log.7
+system.log.13       system.log.23  system.log.33  system.log.43  system.log.8
+system.log.14       system.log.24  system.log.34  system.log.44  system.log.9
+[kratos@ip-172-31-8-84 cassandra]$ ls -alt
+total 1036432
+-rw-r--r-- 1 cassandra cassandra 12236383 Jun 10 01:01 system.log
+drwxr-xr-x 3 cassandra cassandra     4096 May 18 05:03 .
+-rw-r--r-- 1 cassandra cassandra 20971583 May 18 05:03 system.log.1
+-rw-r--r-- 1 cassandra cassandra 20971660 May 17 09:10 system.log.2
+-rw-r--r-- 1 cassandra cassandra 20971749 May 16 11:56 system.log.3
+-rw-r--r-- 1 cassandra cassandra 20971671 May 15 10:48 system.log.4
+-rw-r--r-- 1 cassandra cassandra 20971628 May 14 17:20 system.log.5
+-rw-r--r-- 1 cassandra cassandra 20971550 May 13 21:24 system.log.6
+-rw-r--r-- 1 cassandra cassandra 20971599 May 12 23:36 system.log.7
+-rw-r--r-- 1 cassandra cassandra 20971605 May 12 03:22 system.log.8
+-rw-r--r-- 1 cassandra cassandra 20971635 May  9 15:05 system.log.9
+-rw-r--r-- 1 cassandra cassandra 20971610 May  8 03:50 system.log.10
+-rw-r--r-- 1 cassandra cassandra 20971581 May  7 07:09 system.log.11
+-rw-r--r-- 1 cassandra cassandra 20971644 May  6 09:50 system.log.12
+-rw-r--r-- 1 cassandra cassandra 20971633 May  6 00:02 system.log.13
+-rw-r--r-- 1 cassandra cassandra 20971671 May  5 15:12 system.log.14
+-rw-r--r-- 1 cassandra cassandra 20971538 May  5 05:14 system.log.15
+-rw-r--r-- 1 cassandra cassandra 20971674 May  4 19:05 system.log.16
+-rw-r--r-- 1 cassandra cassandra 20971646 May  4 06:52 system.log.17
+-rw-r--r-- 1 cassandra cassandra 20971726 May  3 20:26 system.log.18
+-rw-r--r-- 1 cassandra cassandra 20971626 May  3 10:48 system.log.19
+-rw-r--r-- 1 cassandra cassandra 20971706 May  2 23:06 system.log.20
+-rw-r--r-- 1 cassandra cassandra 20971614 May  2 13:14 system.log.21
+-rw-r--r-- 1 cassandra cassandra 20971550 May  2 03:02 system.log.22
+-rw-r--r-- 1 cassandra cassandra 20971661 May  1 16:52 system.log.23
+-rw-r--r-- 1 cassandra cassandra 20971766 May  1 06:09 system.log.24
+-rw-r--r-- 1 cassandra cassandra 20971560 Apr 30 18:38 system.log.25
+-rw-r--r-- 1 cassandra cassandra 20971657 Apr 30 10:45 system.log.26
+-rw-r--r-- 1 cassandra cassandra 20971523 Apr 30 02:55 system.log.27
+-rw-r--r-- 1 cassandra cassandra 20971611 Apr 29 19:16 system.log.28
+-rw-r--r-- 1 cassandra cassandra 20971665 Apr 29 11:47 system.log.29
+-rw-r--r-- 1 cassandra cassandra 20971634 Apr 29 04:24 system.log.30
+-rw-r--r-- 1 cassandra cassandra 20971727 Apr 16 15:01 system.log.31
+-rw-r--r-- 1 cassandra cassandra 20971698 Apr 16 07:59 system.log.32
+-rw-r--r-- 1 cassandra cassandra 20971770 Apr 16 00:45 system.log.33
+-rw-r--r-- 1 cassandra cassandra 20971671 Apr 15 16:38 system.log.34
+-rw-r--r-- 1 cassandra cassandra 20971744 Apr 15 08:44 system.log.35
+-rw-r--r-- 1 cassandra cassandra 20971604 Apr 15 01:28 system.log.36
+-rw-r--r-- 1 cassandra cassandra 20971672 Apr 14 18:05 system.log.37
+-rw-r--r-- 1 cassandra cassandra 20971531 Apr 14 10:25 system.log.38
+-rw-r--r-- 1 cassandra cassandra 20971670 Apr 14 03:02 system.log.39
+-rw-r--r-- 1 cassandra cassandra 20971683 Apr 13 20:04 system.log.40
+-rw-r--r-- 1 cassandra cassandra 20971663 Apr 13 12:44 system.log.41
+-rw-r--r-- 1 cassandra cassandra 20971657 Apr 13 05:43 system.log.42
+-rw-r--r-- 1 cassandra cassandra 20971624 Apr 12 22:46 system.log.43
+-rw-r--r-- 1 cassandra cassandra 20971667 Apr 12 15:49 system.log.44
+-rw-r--r-- 1 cassandra cassandra 20971527 Apr 12 08:49 system.log.45
+-rw-r--r-- 1 cassandra cassandra 20971546 Apr 12 01:44 system.log.46
+-rw-r--r-- 1 cassandra cassandra 20971526 Apr 11 18:41 system.log.47
+-rw-r--r-- 1 cassandra cassandra 20971732 Apr 11 11:39 system.log.48
+-rw-r--r-- 1 cassandra cassandra 20971708 Apr 11 04:41 system.log.49
+-rw-r--r-- 1 cassandra cassandra 20971599 Apr 10 21:26 system.log.50
+-rw-r--r-- 1 cassandra root        159525 Feb 23 15:56 output.log
+-rw-r--r-- 1 cassandra cassandra        0 Feb 23 15:50 solrvalidation.log
+drwxr-xr-x 2 cassandra cassandra     4096 Feb 23 15:50 audit
+-rw-r--r-- 1 cassandra cassandra        0 Feb 23 15:50 audit.log
+drwxr-xr-x 4 cassandra cassandra     4096 Feb 23 15:46 ..
+[kratos@ip-172-31-8-84 cassandra]$ less audit.log 
+[kratos@ip-172-31-8-84 cassandra]$ 
+[kratos@ip-172-31-8-84 cassandra]$ nodetool -h 172.31.33.197 -p 7002 proxyhistograms
+Failed to connect to '172.31.33.197:7002': Connection refused
+[kratos@ip-172-31-8-84 cassandra]$ nodetool -h 172.31.33.197 proxyhistograms
+Error connecting to remote JMX agent!
+java.rmi.NoSuchObjectException: no such object in table
+	at sun.rmi.transport.StreamRemoteCall.exceptionReceivedFromServer(StreamRemoteCall.java:275)
+	at sun.rmi.transport.StreamRemoteCall.executeCall(StreamRemoteCall.java:252)
+	at sun.rmi.server.UnicastRef.invoke(UnicastRef.java:161)
+	at javax.management.remote.rmi.RMIServerImpl_Stub.newClient(Unknown Source)
+	at javax.management.remote.rmi.RMIConnector.getConnection(RMIConnector.java:2404)
+	at javax.management.remote.rmi.RMIConnector.connect(RMIConnector.java:308)
+	at javax.management.remote.JMXConnectorFactory.connect(JMXConnectorFactory.java:268)
+	at org.apache.cassandra.tools.NodeProbe.connect(NodeProbe.java:150)
+	at org.apache.cassandra.tools.NodeProbe.<init>(NodeProbe.java:120)
+	at org.apache.cassandra.tools.NodeCmd.main(NodeCmd.java:1196)
+[kratos@ip-172-31-8-84 cassandra]$ nodetool -h 172.31.8.84 proxyhistograms
+proxy histograms
+
+Read Latency (microseconds)
+     60 us: 9
+     72 us: 98
+     86 us: 4023
+    103 us: 125648
+    124 us: 711344
+    149 us: 516424
+    179 us: 819643
+    215 us: 1795703
+    258 us: 807330
+    310 us: 424760
+    372 us: 182023
+    446 us: 113857
+    535 us: 275994
+    642 us: 385067
+    770 us: 237408
+    924 us: 143888
+   1109 us: 106293
+   1331 us: 78793
+   1597 us: 50869
+   1916 us: 28886
+   2299 us: 16705
+   2759 us: 9188
+   3311 us: 7179
+   3973 us: 7386
+   4768 us: 6267
+   5722 us: 4606
+   6866 us: 5105
+   8239 us: 12577
+   9887 us: 23319
+  11864 us: 31727
+  14237 us: 37248
+  17084 us: 41707
+  20501 us: 32966
+  24601 us: 20362
+  29521 us: 15206
+  35425 us: 12837
+  42510 us: 5392
+  51012 us: 2244
+  61214 us: 1466
+  73457 us: 954
+  88148 us: 681
+ 105778 us: 473
+ 126934 us: 261
+ 152321 us: 244
+ 182785 us: 227
+ 219342 us: 187
+ 263210 us: 140
+ 315852 us: 111
+ 379022 us: 76
+ 454826 us: 41
+ 545791 us: 25
+ 654949 us: 11
+ 785939 us: 5
+ 943127 us: 0
+1131752 us: 0
+1358102 us: 0
+1629722 us: 0
+1955666 us: 0
+2346799 us: 0
+2816159 us: 0
+3379391 us: 1
+
+Write Latency (microseconds)
+     24 us: 5
+     29 us: 10
+     35 us: 15
+     42 us: 18
+     50 us: 235
+     60 us: 5691
+     72 us: 226420
+     86 us: 1901963
+    103 us: 3204244
+    124 us: 1021552
+    149 us: 296664
+    179 us: 36904
+    215 us: 10038
+    258 us: 12019
+    310 us: 2326
+    372 us: 38244
+    446 us: 9696169
+    535 us: 11084440
+    642 us: 26000498
+    770 us: 10055677
+    924 us: 1943554
+   1109 us: 1702541
+   1331 us: 1586554
+   1597 us: 1917977
+   1916 us: 788092
+   2299 us: 374795
+   2759 us: 571438
+   3311 us: 494289
+   3973 us: 412140
+   4768 us: 185630
+   5722 us: 181206
+   6866 us: 181276
+   8239 us: 183032
+   9887 us: 196717
+  11864 us: 221461
+  14237 us: 202826
+  17084 us: 157088
+  20501 us: 167262
+  24601 us: 203128
+  29521 us: 160370
+  35425 us: 227892
+  42510 us: 464513
+  51012 us: 2442
+  61214 us: 1629
+  73457 us: 1175
+  88148 us: 883
+ 105778 us: 533
+ 126934 us: 271
+ 152321 us: 165
+ 182785 us: 113
+ 219342 us: 51
+ 263210 us: 21
+ 315852 us: 34
+ 379022 us: 39
+ 454826 us: 21
+ 545791 us: 38
+ 654949 us: 1
+ 785939 us: 4
+ 943127 us: 5
+1131752 us: 4
+1358102 us: 3
+1629722 us: 5
+1955666 us: 5
+2346799 us: 0
+2816159 us: 0
+3379391 us: 2
+4055269 us: 0
+4866323 us: 1
+
+Range Latency (microseconds)
+     215 us: 20
+     258 us: 98
+     310 us: 144
+     372 us: 258
+     446 us: 135
+     535 us: 131
+     642 us: 316
+     770 us: 120
+     924 us: 50
+    1109 us: 19
+    1331 us: 23
+    1597 us: 38
+    1916 us: 38
+    2299 us: 123
+    2759 us: 21836
+    3311 us: 975220
+    3973 us: 1560513
+    4768 us: 1276121
+    5722 us: 827710
+    6866 us: 531532
+    8239 us: 369520
+    9887 us: 303133
+   11864 us: 422675
+   14237 us: 472883
+   17084 us: 540810
+   20501 us: 483375
+   24601 us: 382730
+   29521 us: 399088
+   35425 us: 472445
+   42510 us: 579407
+   51012 us: 516702
+   61214 us: 413409
+   73457 us: 359968
+   88148 us: 317364
+  105778 us: 275475
+  126934 us: 239523
+  152321 us: 249725
+  182785 us: 334292
+  219342 us: 208796
+  263210 us: 132586
+  315852 us: 141848
+  379022 us: 70762
+  454826 us: 18302
+  545791 us: 5758
+  654949 us: 3411
+  785939 us: 1338
+  943127 us: 880
+ 1131752 us: 411
+ 1358102 us: 134
+ 1629722 us: 1217
+ 1955666 us: 918
+ 2346799 us: 908
+ 2816159 us: 2301
+ 3379391 us: 2821
+ 4055269 us: 486
+ 4866323 us: 194
+ 5839588 us: 353
+ 7007506 us: 322
+ 8409007 us: 176
+10090808 us: 453
+
+[kratos@ip-172-31-8-84 cassandra]$ nodetool --host 172.31.8.84 cfhistograms program_keyspace program_items
+program_keyspace/program_items histograms
+
+SSTables per Read
+1 sstables: 343054
+2 sstables: 602
+3 sstables: 7
+
+Write Latency (microseconds)
+    3 us: 6
+    4 us: 94
+    5 us: 1167
+    6 us: 8988
+    7 us: 116031
+    8 us: 417981
+   10 us: 1218918
+   12 us: 1268494
+   14 us: 917517
+   17 us: 752818
+   20 us: 309186
+   24 us: 121111
+   29 us: 20147
+   35 us: 5199
+   42 us: 2328
+   50 us: 683
+   60 us: 266
+   72 us: 67
+   86 us: 28
+  103 us: 3
+  124 us: 183
+  149 us: 828
+  179 us: 52
+  215 us: 3
+  258 us: 0
+  310 us: 0
+  372 us: 0
+  446 us: 0
+  535 us: 0
+  642 us: 0
+  770 us: 0
+  924 us: 0
+ 1109 us: 0
+ 1331 us: 0
+ 1597 us: 0
+ 1916 us: 6
+ 2299 us: 3
+ 2759 us: 4
+ 3311 us: 0
+ 3973 us: 2
+ 4768 us: 0
+ 5722 us: 0
+ 6866 us: 0
+ 8239 us: 0
+ 9887 us: 0
+11864 us: 19
+14237 us: 106
+17084 us: 86
+20501 us: 50
+24601 us: 30
+29521 us: 16
+35425 us: 3
+42510 us: 4
+51012 us: 1
+
+Read Latency (microseconds)
+    35 us: 1
+    42 us: 46
+    50 us: 433
+    60 us: 1071
+    72 us: 674
+    86 us: 366
+   103 us: 39977
+   124 us: 134408
+   149 us: 55440
+   179 us: 31072
+   215 us: 12656
+   258 us: 3819
+   310 us: 1185
+   372 us: 3982
+   446 us: 32752
+   535 us: 18136
+   642 us: 4065
+   770 us: 1142
+   924 us: 1470
+  1109 us: 356
+  1331 us: 87
+  1597 us: 69
+  1916 us: 36
+  2299 us: 66
+  2759 us: 59
+  3311 us: 61
+  3973 us: 24
+  4768 us: 11
+  5722 us: 12
+  6866 us: 13
+  8239 us: 10
+  9887 us: 8
+ 11864 us: 13
+ 14237 us: 21
+ 17084 us: 23
+ 20501 us: 15
+ 24601 us: 17
+ 29521 us: 14
+ 35425 us: 15
+ 42510 us: 16
+ 51012 us: 8
+ 61214 us: 5
+ 73457 us: 2
+ 88148 us: 3
+105778 us: 3
+126934 us: 1
+
+Partition Size (bytes)
+    103 bytes: 2
+    124 bytes: 0
+    149 bytes: 5492
+    179 bytes: 1
+    215 bytes: 0
+    258 bytes: 2
+    310 bytes: 1
+    372 bytes: 1
+    446 bytes: 0
+    535 bytes: 2
+    642 bytes: 0
+    770 bytes: 0
+    924 bytes: 108943
+   1109 bytes: 0
+   1331 bytes: 4
+   1597 bytes: 3
+   1916 bytes: 1
+   2299 bytes: 6
+   2759 bytes: 17
+   3311 bytes: 17
+   3973 bytes: 87
+   4768 bytes: 654
+   5722 bytes: 3376
+   6866 bytes: 11649
+   8239 bytes: 21513
+   9887 bytes: 11686
+  11864 bytes: 1916
+  14237 bytes: 123
+  17084 bytes: 16
+  20501 bytes: 15
+  24601 bytes: 7
+  29521 bytes: 2
+  35425 bytes: 2
+  42510 bytes: 2
+  51012 bytes: 0
+  61214 bytes: 0
+  73457 bytes: 1
+  88148 bytes: 0
+ 105778 bytes: 0
+ 126934 bytes: 0
+ 152321 bytes: 0
+ 182785 bytes: 0
+ 219342 bytes: 0
+ 263210 bytes: 2
+ 315852 bytes: 0
+ 379022 bytes: 0
+ 454826 bytes: 0
+ 545791 bytes: 0
+ 654949 bytes: 0
+ 785939 bytes: 0
+ 943127 bytes: 0
+1131752 bytes: 0
+1358102 bytes: 0
+1629722 bytes: 0
+1955666 bytes: 491
+
+Cell Count per Partition
+    1 cells: 2
+    2 cells: 5492
+    3 cells: 1
+    4 cells: 0
+    5 cells: 2
+    6 cells: 1
+    7 cells: 0
+    8 cells: 1
+   10 cells: 2
+   12 cells: 0
+   14 cells: 0
+   17 cells: 0
+   20 cells: 88
+   24 cells: 108856
+   29 cells: 3
+   35 cells: 5
+   42 cells: 7
+   50 cells: 8
+   60 cells: 158
+   72 cells: 957
+   86 cells: 3548
+  103 cells: 14092
+  124 cells: 20895
+  149 cells: 9686
+  179 cells: 1428
+  215 cells: 148
+  258 cells: 68
+  310 cells: 63
+  372 cells: 15
+  446 cells: 8
+  535 cells: 3
+  642 cells: 2
+  770 cells: 1
+  924 cells: 0
+ 1109 cells: 0
+ 1331 cells: 1
+ 1597 cells: 0
+ 1916 cells: 0
+ 2299 cells: 0
+ 2759 cells: 0
+ 3311 cells: 0
+ 3973 cells: 2
+ 4768 cells: 0
+ 5722 cells: 0
+ 6866 cells: 0
+ 8239 cells: 0
+ 9887 cells: 0
+11864 cells: 0
+14237 cells: 0
+17084 cells: 0
+20501 cells: 0
+24601 cells: 0
+29521 cells: 0
+35425 cells: 0
+42510 cells: 489
+51012 cells: 2
+
+[kratos@ip-172-31-8-84 cassandra]$ cd /urs/share/dse/tools
+-bash: cd: /urs/share/dse/tools: No such file or directory
+[kratos@ip-172-31-8-84 cassandra]$ cd /usr/share/dse/tools
+[kratos@ip-172-31-8-84 tools]$ ls
+cfs-stress  pfc  yamls
+[kratos@ip-172-31-8-84 tools]$ cd pfc
+[kratos@ip-172-31-8-84 pfc]$ ls
+benchmarks  checks  preflight_check  README.md
+[kratos@ip-172-31-8-84 pfc]$ cd benchmarks
+[kratos@ip-172-31-8-84 benchmarks]$ ls
+disk.py  disk.pyc  disk.pyo  __init__.py  __init__.pyc  __init__.pyo  iops.py  iops.pyc  iops.pyo
+[kratos@ip-172-31-8-84 benchmarks]$ cd ..
+[kratos@ip-172-31-8-84 pfc]$ open README.md
+Couldn't get a file descriptor referring to the console
+[kratos@ip-172-31-8-84 pfc]$ less README.md 
+[kratos@ip-172-31-8-84 pfc]$ ls -alt
+total 24
+drwxr-xr-x 4 root root 4096 Feb  5 19:24 .
+drwxr-xr-x 4 root root 4096 Feb  5 19:24 ..
+drwxr-xr-x 2 root root 4096 Feb  5 19:24 checks
+drwxr-xr-x 2 root root 4096 Feb  5 19:24 benchmarks
+-rwxr-xr-x 1 root root 2402 Oct 28  2014 preflight_check
+-rwxr-xr-x 1 root root  435 Oct 28  2014 README.md
+[kratos@ip-172-31-8-84 pfc]$ cd checks
+[kratos@ip-172-31-8-84 checks]$ ls -alt
+total 116
+drwxr-xr-x 4 root root 4096 Feb  5 19:24 ..
+drwxr-xr-x 2 root root 4096 Feb  5 19:24 .
+-rwxr-xr-x 1 root root 1978 Dec  1  2014 blockdev.pyc
+-rwxr-xr-x 1 root root 1978 Dec  1  2014 blockdev.pyo
+-rwxr-xr-x 1 root root  980 Dec  1  2014 command_line.pyc
+-rwxr-xr-x 1 root root  980 Dec  1  2014 command_line.pyo
+-rwxr-xr-x 1 root root  345 Dec  1  2014 __init__.pyc
+-rwxr-xr-x 1 root root  345 Dec  1  2014 __init__.pyo
+-rwxr-xr-x 1 root root 1877 Dec  1  2014 kernel_state.pyc
+-rwxr-xr-x 1 root root 1877 Dec  1  2014 kernel_state.pyo
+-rwxr-xr-x 1 root root 2382 Dec  1  2014 limits.pyc
+-rwxr-xr-x 1 root root 2382 Dec  1  2014 limits.pyo
+-rwxr-xr-x 1 root root 2390 Dec  1  2014 nproc.pyc
+-rwxr-xr-x 1 root root 2390 Dec  1  2014 nproc.pyo
+-rwxr-xr-x 1 root root 2117 Dec  1  2014 ssd.pyc
+-rwxr-xr-x 1 root root 2117 Dec  1  2014 ssd.pyo
+-rwxr-xr-x 1 root root 1407 Dec  1  2014 swap.pyc
+-rwxr-xr-x 1 root root 1407 Dec  1  2014 swap.pyo
+-rwxr-xr-x 1 root root 1808 Dec  1  2014 yaml_check.pyc
+-rwxr-xr-x 1 root root 1808 Dec  1  2014 yaml_check.pyo
+-rwxr-xr-x 1 root root 2260 Nov 30  2014 blockdev.py
+-rwxr-xr-x 1 root root 2672 Nov 30  2014 ssd.py
+-rwxr-xr-x 1 root root 2010 Nov 18  2014 kernel_state.py
+-rwxr-xr-x 1 root root 2668 Nov 18  2014 nproc.py
+-rwxr-xr-x 1 root root 2039 Nov 18  2014 yaml_check.py
+-rwxr-xr-x 1 root root  518 Oct 28  2014 command_line.py
+-rwxr-xr-x 1 root root  144 Oct 28  2014 __init__.py
+-rwxr-xr-x 1 root root 2591 Oct 28  2014 limits.py
+-rwxr-xr-x 1 root root 1344 Oct 28  2014 swap.py
+[kratos@ip-172-31-8-84 checks]$ less limits.py
+[kratos@ip-172-31-8-84 checks]$ less /etc/security/limits.conf
+[kratos@ip-172-31-8-84 checks]$ less /etc/security/limits.conf
+[kratos@ip-172-31-8-84 checks]$ 
+[kratos@ip-172-31-8-84 checks]$ clear
+
+[kratos@ip-172-31-8-84 checks]$ ls
+blockdev.py      command_line.pyc  __init__.pyo      limits.py   nproc.pyc  ssd.pyo   yaml_check.py
+blockdev.pyc     command_line.pyo  kernel_state.py   limits.pyc  nproc.pyo  swap.py   yaml_check.pyc
+blockdev.pyo     __init__.py       kernel_state.pyc  limits.pyo  ssd.py     swap.pyc  yaml_check.pyo
+command_line.py  __init__.pyc      kernel_state.pyo  nproc.py    ssd.pyc    swap.pyo
+[kratos@ip-172-31-8-84 checks]$ ls -alt
+total 116
+drwxr-xr-x 4 root root 4096 Feb  5 19:24 ..
+drwxr-xr-x 2 root root 4096 Feb  5 19:24 .
+-rwxr-xr-x 1 root root 1978 Dec  1  2014 blockdev.pyc
+-rwxr-xr-x 1 root root 1978 Dec  1  2014 blockdev.pyo
+-rwxr-xr-x 1 root root  980 Dec  1  2014 command_line.pyc
+-rwxr-xr-x 1 root root  980 Dec  1  2014 command_line.pyo
+-rwxr-xr-x 1 root root  345 Dec  1  2014 __init__.pyc
+-rwxr-xr-x 1 root root  345 Dec  1  2014 __init__.pyo
+-rwxr-xr-x 1 root root 1877 Dec  1  2014 kernel_state.pyc
+-rwxr-xr-x 1 root root 1877 Dec  1  2014 kernel_state.pyo
+-rwxr-xr-x 1 root root 2382 Dec  1  2014 limits.pyc
+-rwxr-xr-x 1 root root 2382 Dec  1  2014 limits.pyo
+-rwxr-xr-x 1 root root 2390 Dec  1  2014 nproc.pyc
+-rwxr-xr-x 1 root root 2390 Dec  1  2014 nproc.pyo
+-rwxr-xr-x 1 root root 2117 Dec  1  2014 ssd.pyc
+-rwxr-xr-x 1 root root 2117 Dec  1  2014 ssd.pyo
+-rwxr-xr-x 1 root root 1407 Dec  1  2014 swap.pyc
+-rwxr-xr-x 1 root root 1407 Dec  1  2014 swap.pyo
+-rwxr-xr-x 1 root root 1808 Dec  1  2014 yaml_check.pyc
+-rwxr-xr-x 1 root root 1808 Dec  1  2014 yaml_check.pyo
+-rwxr-xr-x 1 root root 2260 Nov 30  2014 blockdev.py
+-rwxr-xr-x 1 root root 2672 Nov 30  2014 ssd.py
+-rwxr-xr-x 1 root root 2010 Nov 18  2014 kernel_state.py
+-rwxr-xr-x 1 root root 2668 Nov 18  2014 nproc.py
+-rwxr-xr-x 1 root root 2039 Nov 18  2014 yaml_check.py
+-rwxr-xr-x 1 root root  518 Oct 28  2014 command_line.py
+-rwxr-xr-x 1 root root  144 Oct 28  2014 __init__.py
+-rwxr-xr-x 1 root root 2591 Oct 28  2014 limits.py
+-rwxr-xr-x 1 root root 1344 Oct 28  2014 swap.py
+[kratos@ip-172-31-8-84 checks]$ nano /etc/security/limits.d/90-nproc.conf
+[kratos@ip-172-31-8-84 checks]$ less /etc/security
+[kratos@ip-172-31-8-84 checks]$ cd /etc/security
+[kratos@ip-172-31-8-84 security]$ ls
+access.conf   console.handlers  group.conf   namespace.conf  opasswd           sepermit.conf
+chroot.conf   console.perms     limits.conf  namespace.d     pam_env.conf      time.conf
+console.apps  console.perms.d   limits.d     namespace.init  pam_winbind.conf
+[kratos@ip-172-31-8-84 security]$ ls -alt
+total 84
+drwxr-xr-x. 107 root root 12288 Jun  4 03:48 ..
+drwxr-xr-x.   2 root root  4096 Feb  5 19:24 limits.d
+drwxr-xr-x.   2 root root  4096 Feb  5 18:45 console.apps
+drwxr-xr-x.   6 root root  4096 Feb  5 18:43 .
+-rw-r--r--.   1 root root   772 Aug 20  2014 pam_winbind.conf
+-rw-------.   1 root root     0 Jul 17  2014 opasswd
+-rw-r--r--.   1 root root  2180 Jul 17  2014 time.conf
+-rw-r--r--.   1 root root   419 Jul 17  2014 sepermit.conf
+-rw-r--r--.   1 root root  1442 Jul 17  2014 namespace.conf
+drwxr-xr-x.   2 root root  4096 Jul 17  2014 namespace.d
+-rwxr-xr-x.   1 root root  1020 Jul 17  2014 namespace.init
+-rw-r--r--.   1 root root  1835 Jul 17  2014 limits.conf
+-rw-r--r--.   1 root root  3456 Jul 17  2014 group.conf
+-rw-r--r--.   1 root root  2980 Jul 17  2014 pam_env.conf
+-rw-r--r--.   1 root root    82 Jul 17  2014 chroot.conf
+-rw-r--r--.   1 root root   604 Jul 17  2014 console.handlers
+-rw-r--r--.   1 root root   939 Jul 17  2014 console.perms
+drwxr-xr-x.   2 root root  4096 Jul 17  2014 console.perms.d
+-rw-r--r--.   1 root root  4620 Jul 17  2014 access.conf
+[kratos@ip-172-31-8-84 security]$ less limits.conf 
+[kratos@ip-172-31-8-84 security]$ cd limits.d/
+[kratos@ip-172-31-8-84 limits.d]$ ls
+90-nproc.conf  99-cass-limits.conf  99-system_tuning.conf  cassandra.conf
+[kratos@ip-172-31-8-84 limits.d]$ ls -alt
+total 24
+drwxr-xr-x. 2 root root 4096 Feb  5 19:24 .
+-rw-r--r--  1 root root   73 Feb  5 19:21 99-cass-limits.conf
+-rw-r--r--. 1 root root  121 Feb  5 18:51 99-system_tuning.conf
+drwxr-xr-x. 6 root root 4096 Feb  5 18:43 ..
+-rwxr-xr-x  1 root root  141 Oct 28  2014 cassandra.conf
+-rw-r--r--. 1 root root  191 Jul 17  2014 90-nproc.conf
+[kratos@ip-172-31-8-84 limits.d]$ less cassandra.conf 
+[kratos@ip-172-31-8-84 limits.d]$ clear
+
+[kratos@ip-172-31-8-84 limits.d]$ ulimit -a
+core file size          (blocks, -c) 0
+data seg size           (kbytes, -d) unlimited
+scheduling priority             (-e) 0
+file size               (blocks, -f) unlimited
+pending signals                 (-i) 240422
+max locked memory       (kbytes, -l) unlimited
+max memory size         (kbytes, -m) unlimited
+open files                      (-n) 999999
+pipe size            (512 bytes, -p) 8
+POSIX message queues     (bytes, -q) 819200
+real-time priority              (-r) 0
+stack size              (kbytes, -s) 10240
+cpu time               (seconds, -t) unlimited
+max user processes              (-u) 32768
+virtual memory          (kbytes, -v) unlimited
+file locks                      (-x) unlimited
+[kratos@ip-172-31-8-84 limits.d]$ less /etc/security/limits.d/cassandra.conf 
+[kratos@ip-172-31-8-84 limits.d]$ less /etc/sysctl.conf
+[kratos@ip-172-31-8-84 limits.d]$ less /etc/security/limits.d/90-nproc.conf
+[kratos@ip-172-31-8-84 limits.d]$ cd /proc
+[kratos@ip-172-31-8-84 proc]$ ls
+1     126   152   1723  198   226   275   396    55     80799      cmdline      net
+10    127   153   1724  199   227   28    398    556    80801      cpuinfo      pagetypeinfo
+100   128   154   173   2     228   2808  4      56     80802      crypto       partitions
+101   129   1540  174   20    229   2839  40     57     81         devices      sched_debug
+102   13    155   175   200   23    29    41     58     82         diskstats    schedstat
+103   130   156   1753  201   230   2911  42     59     83         dma          scsi
+104   131   1568  176   202   231   2958  43     6      84         driver       self
+105   132   157   1762  203   232   2991  44     60     85         execdomains  slabinfo
+106   133   158   177   204   233   3     44684  61     86         fb           softirqs
+107   134   159   178   205   234   30    44685  62     87         filesystems  stat
+108   135   1592  1785  206   235   3067  44686  63     88         fs           swaps
+1088  136   16    179   2065  236   3092  44687  64     89         interrupts   sys
+109   137   160   18    207   237   31    44688  65     89764      iomem        sysrq-trigger
+11    138   1608  181   2076  238   32    44689  66     89778      ioports      sysvipc
+110   139   161   182   2077  239   3209  44692  67     89873      irq          timer_list
+111   14    162   183   208   24    3233  44693  68     89878      kallsyms     timer_stats
+112   140   163   184   209   241   3238  45     69     9          kcore        tty
+113   141   1637  185   21    242   3240  46     7      90         keys         uptime
+114   142   164   186   210   243   3244  464    70     91         key-users    version
+115   143   165   187   211   25    3246  465    71     92         kmsg         vmallocinfo
+116   144   166   188   212   2598  3248  47     72     93         kpagecount   vmstat
+117   145   1667  189   213   26    3253  48     73     94         kpageflags   xen
+118   146   167   19    2135  2607  3258  486    74     95         loadavg      zoneinfo
+119   147   168   190   214   2623  3259  49     75     96         locks
+12    1473  1684  191   215   2632  33    5      76     97         mdstat
+120   148   169   192   216   2657  34    50     76938  98         meminfo
+121   149   17    193   22    2675  35    51     77     99         misc
+122   15    170   194   2212  27    36    52     78     acpi       modules
+123   150   171   195   224   2716  37    53     79     buddyinfo  mounts
+124   151   1713  196   2248  2717  38    5354   8      bus        mtd
+125   1510  172   197   225   274   39    54     80     cgroups    mtrr
+[kratos@ip-172-31-8-84 proc]$ ls -alt
+total 4
+lrwxrwxrwx    1 root            root              11 Jun 10 02:10 mounts -> self/mounts
+dr-xr-xr-x    8 root            root               0 Jun 10 02:10 89894
+dr-xr-xr-x    8 kratos          kratos             0 Jun 10 02:10 89895
+-r--r--r--    1 root            root               0 Jun 10 02:10 buddyinfo
+-r--r--r--    1 root            root               0 Jun 10 02:10 cgroups
+-r--r--r--    1 root            root               0 Jun 10 02:10 cmdline
+-r--r--r--    1 root            root               0 Jun 10 02:10 cpuinfo
+-r--r--r--    1 root            root               0 Jun 10 02:10 crypto
+-r--r--r--    1 root            root               0 Jun 10 02:10 devices
+-r--r--r--    1 root            root               0 Jun 10 02:10 diskstats
+-r--r--r--    1 root            root               0 Jun 10 02:10 dma
+dr-xr-xr-x    3 root            root               0 Jun 10 02:10 driver
+-r--r--r--    1 root            root               0 Jun 10 02:10 execdomains
+-r--r--r--    1 root            root               0 Jun 10 02:10 fb
+-r--r--r--    1 root            root               0 Jun 10 02:10 filesystems
+dr-xr-xr-x    5 root            root               0 Jun 10 02:10 fs
+-r--r--r--    1 root            root               0 Jun 10 02:10 interrupts
+-r--r--r--    1 root            root               0 Jun 10 02:10 iomem
+-r--r--r--    1 root            root               0 Jun 10 02:10 ioports
+dr-xr-xr-x   87 root            root               0 Jun 10 02:10 irq
+-r--r--r--    1 root            root               0 Jun 10 02:10 kallsyms
+-r--------    1 root            root            4096 Jun 10 02:10 kcore
+-r--r--r--    1 root            root               0 Jun 10 02:10 keys
+-r--r--r--    1 root            root               0 Jun 10 02:10 key-users
+-r--------    1 root            root               0 Jun 10 02:10 kpagecount
+-r--------    1 root            root               0 Jun 10 02:10 kpageflags
+-r--r--r--    1 root            root               0 Jun 10 02:10 loadavg
+-r--r--r--    1 root            root               0 Jun 10 02:10 locks
+-r--r--r--    1 root            root               0 Jun 10 02:10 meminfo
+-r--r--r--    1 root            root               0 Jun 10 02:10 misc
+-r--r--r--    1 root            root               0 Jun 10 02:10 modules
+-r--r--r--    1 root            root               0 Jun 10 02:10 mtd
+-rw-r--r--    1 root            root               0 Jun 10 02:10 mtrr
+lrwxrwxrwx    1 root            root               8 Jun 10 02:10 net -> self/net
+-r--r--r--    1 root            root               0 Jun 10 02:10 pagetypeinfo
+-r--r--r--    1 root            root               0 Jun 10 02:10 partitions
+-r--r--r--    1 root            root               0 Jun 10 02:10 sched_debug
+-r--r--r--    1 root            root               0 Jun 10 02:10 schedstat
+dr-xr-xr-x    2 root            root               0 Jun 10 02:10 scsi
+-rw-r--r--    1 root            root               0 Jun 10 02:10 slabinfo
+-r--r--r--    1 root            root               0 Jun 10 02:10 softirqs
+-r--r--r--    1 root            root               0 Jun 10 02:10 swaps
+--w-------    1 root            root               0 Jun 10 02:10 sysrq-trigger
+dr-xr-xr-x    2 root            root               0 Jun 10 02:10 sysvipc
+-r--r--r--    1 root            root               0 Jun 10 02:10 timer_list
+-rw-r--r--    1 root            root               0 Jun 10 02:10 timer_stats
+dr-xr-xr-x    4 root            root               0 Jun 10 02:10 tty
+-r--r--r--    1 root            root               0 Jun 10 02:10 uptime
+-r--r--r--    1 root            root               0 Jun 10 02:10 version
+-r--------    1 root            root               0 Jun 10 02:10 vmallocinfo
+-r--r--r--    1 root            root               0 Jun 10 02:10 vmstat
+dr-xr-xr-x    2 root            root               0 Jun 10 02:10 xen
+-r--r--r--    1 root            root               0 Jun 10 02:10 zoneinfo
+dr-xr-xr-x    8 opscenter-agent opscenter-agent    0 Jun 10 02:10 89884
+dr-xr-xr-x    8 opscenter-agent opscenter-agent    0 Jun 10 02:09 89778
+dr-xr-xr-x    8 kratos          kratos             0 Jun 10 01:25 80801
+dr-xr-xr-x    8 kratos          kratos             0 Jun 10 01:25 80802
+dr-xr-xr-x    8 root            root               0 Jun 10 01:25 80799
+dr-xr-xr-x    8 postfix         postfix            0 Jun 10 00:32 76938
+dr-xr-xr-x    8 apache          apache             0 Jun  7 03:35 44684
+dr-xr-xr-x    8 apache          apache             0 Jun  7 03:35 44685
+dr-xr-xr-x    8 apache          apache             0 Jun  7 03:35 44686
+dr-xr-xr-x    8 apache          apache             0 Jun  7 03:35 44687
+dr-xr-xr-x    8 apache          apache             0 Jun  7 03:35 44688
+dr-xr-xr-x    8 apache          apache             0 Jun  7 03:35 44689
+dr-xr-xr-x    8 apache          apache             0 Jun  7 03:35 44692
+dr-xr-xr-x    8 apache          apache             0 Jun  7 03:35 44693
+-r--r--r--    1 root            root               0 Feb 23 15:50 stat
+dr-xr-xr-x    8 cassandra       cassandra          0 Feb 23 15:50 5354
+dr-xr-xr-x    8 root            root               0 Feb 23 15:46 3209
+dr-xr-xr-x    8 root            root               0 Feb 23 15:46 3233
+dr-xr-xr-x    8 root            root               0 Feb 23 15:46 3238
+dr-xr-xr-x    8 root            root               0 Feb 23 15:46 3240
+dr-xr-xr-x    8 root            root               0 Feb 23 15:46 3244
+dr-xr-xr-x    8 root            root               0 Feb 23 15:46 3246
+dr-xr-xr-x    8 root            root               0 Feb 23 15:46 3248
+dr-xr-xr-x    8 root            root               0 Feb 23 15:46 3253
+dr-xr-xr-x    8 root            root               0 Feb 23 15:46 3258
+dr-xr-xr-x    8 root            root               0 Feb 23 15:46 3259
+dr-xr-xr-x    8 root            root               0 Feb 23 15:46 3067
+dr-xr-xr-x    8 opscenter-agent opscenter-agent    0 Feb 23 15:46 3092
+dr-xr-xr-x    8 root            root               0 Feb 23 15:46 2958
+dr-xr-xr-x    8 root            root               0 Feb 23 15:46 2991
+dr-xr-xr-x    8 splunk          root               0 Feb 23 15:46 2839
+dr-xr-xr-x    8 cassandra       cassandra          0 Feb 23 15:46 2911
+dr-xr-xr-x    8 root            root               0 Feb 23 15:46 2632
+dr-xr-xr-x    8 root            root               0 Feb 23 15:46 2657
+dr-xr-xr-x    8 root            root               0 Feb 23 15:46 2675
+dr-xr-xr-x    8 splunk          root               0 Feb 23 15:46 2716
+dr-xr-xr-x    8 splunk          root               0 Feb 23 15:46 2808
+dr-xr-xr-x    8 splunk          root               0 Feb 23 15:46 2717
+dr-xr-xr-x    8 root            root               0 Feb 23 15:46 2598
+dr-xr-xr-x    8 postfix         postfix            0 Feb 23 15:46 2607
+dr-xr-xr-x    8 root            root               0 Feb 23 15:46 2623
+dr-xr-xr-x    8 dbus            dbus               0 Feb 23 15:46 1667
+dr-xr-xr-x    8 root            root               0 Feb 23 15:46 1684
+dr-xr-xr-x    8 root            root               0 Feb 23 15:46 1713
+dr-xr-xr-x    8 root            root               0 Feb 23 15:46 1785
+dr-xr-xr-x    8 root            root               0 Feb 23 15:46 2065
+dr-xr-xr-x    8 root            root               0 Feb 23 15:46 2076
+dr-xr-xr-x    8 root            root               0 Feb 23 15:46 2077
+dr-xr-xr-x    8 root            root               0 Feb 23 15:46 2135
+dr-xr-xr-x    8 ntp             ntp                0 Feb 23 15:46 2248
+dr-xr-xr-x    8 root            root               0 Feb 23 15:46 2212
+dr-xr-xr-x.  29 root            root            4096 Feb 23 15:46 ..
+dr-xr-xr-x    8 haldaemon       haldaemon          0 Feb 23 15:45 1762
+dr-xr-xr-x    8 root            root               0 Feb 23 15:45 1753
+-r--r--r--    1 root            root               0 Feb 23 15:45 mdstat
+dr-xr-xr-x    8 haldaemon       haldaemon          0 Feb 23 15:45 1723
+dr-xr-xr-x    8 root            root               0 Feb 23 15:45 1724
+dr-xr-xr-x   10 root            root               0 Feb 23 15:45 acpi
+dr-xr-xr-x    8 rpcuser         rpcuser            0 Feb 23 15:45 1637
+dr-xr-xr-x    8 rpc             rpc                0 Feb 23 15:45 1608
+dr-xr-xr-x    8 root            root               0 Feb 23 15:45 1473
+dr-xr-xr-x    8 root            root               0 Feb 23 15:45 1540
+dr-xr-xr-x    8 root            root               0 Feb 23 15:45 1592
+dr-xr-xr-x    8 root            root               0 Feb 23 15:45 1568
+-r--------    1 root            root               0 Feb 23 15:45 kmsg
+dr-xr-xr-x    8 root            root               0 Feb 23 15:45 1510
+dr-xr-xr-x    8 root            root               0 Feb 23 15:45 1088
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 556
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 1
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 10
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 100
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 101
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 102
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 103
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 104
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 105
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 106
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 107
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 108
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 109
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 11
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 110
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 111
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 112
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 113
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 114
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 115
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 116
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 117
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 118
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 119
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 12
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 120
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 121
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 122
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 123
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 124
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 125
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 126
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 127
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 128
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 129
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 13
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 130
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 131
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 132
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 133
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 134
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 135
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 136
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 137
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 138
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 139
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 14
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 140
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 141
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 142
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 143
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 144
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 145
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 146
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 147
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 148
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 149
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 15
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 150
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 151
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 152
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 153
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 154
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 155
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 156
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 157
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 158
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 159
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 16
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 160
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 161
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 162
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 163
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 164
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 165
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 166
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 167
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 168
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 169
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 17
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 170
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 171
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 172
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 173
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 174
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 175
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 176
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 177
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 178
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 179
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 18
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 181
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 182
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 183
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 184
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 185
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 186
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 187
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 188
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 189
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 19
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 190
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 191
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 192
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 193
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 194
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 195
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 196
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 197
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 198
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 199
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 2
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 20
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 200
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 201
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 202
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 203
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 204
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 205
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 206
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 207
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 208
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 209
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 21
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 210
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 211
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 212
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 213
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 214
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 215
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 216
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 22
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 224
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 225
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 226
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 227
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 228
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 229
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 23
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 230
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 231
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 232
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 233
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 234
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 235
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 236
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 237
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 238
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 239
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 24
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 241
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 242
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 243
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 25
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 26
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 27
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 274
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 275
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 28
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 29
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 3
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 30
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 31
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 32
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 33
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 34
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 35
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 36
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 37
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 38
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 39
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 396
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 398
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 4
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 40
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 41
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 42
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 43
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 44
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 45
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 46
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 464
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 465
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 47
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 48
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 486
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 49
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 5
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 50
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 51
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 52
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 53
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 54
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 55
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 56
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 57
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 58
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 59
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 6
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 60
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 61
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 62
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 63
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 64
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 65
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 66
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 67
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 68
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 69
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 7
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 70
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 71
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 72
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 73
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 74
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 75
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 76
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 77
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 78
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 79
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 8
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 80
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 81
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 82
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 83
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 84
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 85
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 86
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 87
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 88
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 89
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 9
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 90
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 91
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 92
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 93
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 94
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 95
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 96
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 97
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 98
+dr-xr-xr-x    8 root            root               0 Feb 23 15:44 99
+lrwxrwxrwx    1 root            root              64 Feb 23 15:44 self -> 89895
+dr-xr-xr-x    1 root            root               0 Feb 23 15:44 sys
+dr-xr-xr-x    6 root            root               0 Feb 23 15:44 bus
+dr-xr-xr-x  318 root            root               0 Feb 23 15:44 .
+[kratos@ip-172-31-8-84 proc]$ cat /proc/5354/limits
+cat: /proc/5354/limits: Permission denied
+[kratos@ip-172-31-8-84 proc]$ cd ..
+[kratos@ip-172-31-8-84 /]$ pwd
+/
+[kratos@ip-172-31-8-84 /]$ cd /usr/share/dse/tools
+[kratos@ip-172-31-8-84 tools]$ ls
+cfs-stress  pfc  yamls
+[kratos@ip-172-31-8-84 tools]$ ls -alt
+total 20
+drwxr-xr-x  4 root      root      4096 Feb  5 19:24 .
+drwxr-xr-x  4 root      root      4096 Feb  5 19:24 pfc
+drwxr-xr-x  2 root      root      4096 Feb  5 19:24 yamls
+drwxr-xr-x 17 cassandra cassandra 4096 Feb  5 19:24 ..
+-rwxr-xr-x  1 root      root       545 Nov 30  2014 cfs-stress
+[kratos@ip-172-31-8-84 tools]$ cd pfc
+[kratos@ip-172-31-8-84 pfc]$ ls
+benchmarks  checks  preflight_check  README.md
+[kratos@ip-172-31-8-84 pfc]$ cd checks
+[kratos@ip-172-31-8-84 checks]$ ls
+blockdev.py       command_line.pyo  kernel_state.pyc  nproc.py   ssd.pyo        yaml_check.pyc
+blockdev.pyc      __init__.py       kernel_state.pyo  nproc.pyc  swap.py        yaml_check.pyo
+blockdev.pyo      __init__.pyc      limits.py         nproc.pyo  swap.pyc
+command_line.py   __init__.pyo      limits.pyc        ssd.py     swap.pyo
+command_line.pyc  kernel_state.py   limits.pyo        ssd.pyc    yaml_check.py
+[kratos@ip-172-31-8-84 checks]$ cd ..
+[kratos@ip-172-31-8-84 pfc]$ ls
+benchmarks  checks  preflight_check  README.md
+[kratos@ip-172-31-8-84 pfc]$ ls -alt
+total 24
+drwxr-xr-x 4 root root 4096 Feb  5 19:24 .
+drwxr-xr-x 4 root root 4096 Feb  5 19:24 ..
+drwxr-xr-x 2 root root 4096 Feb  5 19:24 checks
+drwxr-xr-x 2 root root 4096 Feb  5 19:24 benchmarks
+-rwxr-xr-x 1 root root 2402 Oct 28  2014 preflight_check
+-rwxr-xr-x 1 root root  435 Oct 28  2014 README.md
+[kratos@ip-172-31-8-84 pfc]$ less preflight_check 
+[kratos@ip-172-31-8-84 pfc]$ cd benchmarks
+[kratos@ip-172-31-8-84 benchmarks]$ ls
+disk.py  disk.pyc  disk.pyo  __init__.py  __init__.pyc  __init__.pyo  iops.py  iops.pyc  iops.pyo
+[kratos@ip-172-31-8-84 benchmarks]$ less disk.py
+[kratos@ip-172-31-8-84 benchmarks]$ 
+[kratos@ip-172-31-8-84 benchmarks]$ clear
+
+[kratos@ip-172-31-8-84 benchmarks]$ cd ..
+[kratos@ip-172-31-8-84 pfc]$ ls
+benchmarks  checks  preflight_check  README.md
+[kratos@ip-172-31-8-84 pfc]$ cd checks
+[kratos@ip-172-31-8-84 checks]$ ls
+blockdev.py   command_line.py   __init__.py   kernel_state.py   limits.py   nproc.py   ssd.py   swap.py   yaml_check.py
+blockdev.pyc  command_line.pyc  __init__.pyc  kernel_state.pyc  limits.pyc  nproc.pyc  ssd.pyc  swap.pyc  yaml_check.pyc
+blockdev.pyo  command_line.pyo  __init__.pyo  kernel_state.pyo  limits.pyo  nproc.pyo  ssd.pyo  swap.pyo  yaml_check.pyo
+[kratos@ip-172-31-8-84 checks]$ less blockdev.p
+blockdev.p: No such file or directory
+[kratos@ip-172-31-8-84 checks]$ less blockdev.py
+[kratos@ip-172-31-8-84 checks]$ less command_line.py
+[kratos@ip-172-31-8-84 checks]$ less kernel_state.py
+[kratos@ip-172-31-8-84 checks]$ less limits.py
+[kratos@ip-172-31-8-84 checks]$ less nproc.py
+[kratos@ip-172-31-8-84 checks]$ less ssd.py
+[kratos@ip-172-31-8-84 checks]$ less swap.py
+[kratos@ip-172-31-8-84 checks]$ less yaml_check.py
+[kratos@ip-172-31-8-84 checks]$ less yaml_check.py
+[kratos@ip-172-31-8-84 checks]$ cat /etc/*-release
+LSB_VERSION=base-4.0-amd64:base-4.0-noarch:core-4.0-amd64:core-4.0-noarch:graphics-4.0-amd64:graphics-4.0-noarch:printing-4.0-amd64:printing-4.0-noarch
+Red Hat Enterprise Linux Server release 6.6 (Santiago)
+Red Hat Enterprise Linux Server release 6.6 (Santiago)
+[kratos@ip-172-31-8-84 checks]$ less /etc/security/conf.d
+/etc/security/conf.d: No such file or directory
+[kratos@ip-172-31-8-84 checks]$ less /etc/security/
+[kratos@ip-172-31-8-84 checks]$ 
+[kratos@ip-172-31-8-84 checks]$ cd limits.d
+-bash: cd: limits.d: No such file or directory
+[kratos@ip-172-31-8-84 checks]$ ls
+blockdev.py      command_line.pyc  __init__.pyo      limits.py   nproc.pyc  ssd.pyo   yaml_check.py
+blockdev.pyc     command_line.pyo  kernel_state.py   limits.pyc  nproc.pyo  swap.py   yaml_check.pyc
+blockdev.pyo     __init__.py       kernel_state.pyc  limits.pyo  ssd.py     swap.pyc  yaml_check.pyo
+command_line.py  __init__.pyc      kernel_state.pyo  nproc.py    ssd.pyc    swap.pyo
+[kratos@ip-172-31-8-84 checks]$ cd ..
+[kratos@ip-172-31-8-84 pfc]$ cd /etc/security
+[kratos@ip-172-31-8-84 security]$ ls
+access.conf   console.handlers  group.conf   namespace.conf  opasswd           sepermit.conf
+chroot.conf   console.perms     limits.conf  namespace.d     pam_env.conf      time.conf
+console.apps  console.perms.d   limits.d     namespace.init  pam_winbind.conf
+[kratos@ip-172-31-8-84 security]$ cd limits.d
+[kratos@ip-172-31-8-84 limits.d]$ ls
+90-nproc.conf  99-cass-limits.conf  99-system_tuning.conf  cassandra.conf
+[kratos@ip-172-31-8-84 limits.d]$ less 90-nproc.conf 
+[kratos@ip-172-31-8-84 limits.d]$ less cassandra.conf 
+[kratos@ip-172-31-8-84 limits.d]$ less 90-nproc.conf 
+[kratos@ip-172-31-8-84 limits.d]$ pwd
+/etc/security/limits.d
+[kratos@ip-172-31-8-84 limits.d]$ ls -alt
+total 24
+drwxr-xr-x. 2 root root 4096 Feb  5 19:24 .
+-rw-r--r--  1 root root   73 Feb  5 19:21 99-cass-limits.conf
+-rw-r--r--. 1 root root  121 Feb  5 18:51 99-system_tuning.conf
+drwxr-xr-x. 6 root root 4096 Feb  5 18:43 ..
+-rwxr-xr-x  1 root root  141 Oct 28  2014 cassandra.conf
+-rw-r--r--. 1 root root  191 Jul 17  2014 90-nproc.conf
+[kratos@ip-172-31-8-84 limits.d]$ 

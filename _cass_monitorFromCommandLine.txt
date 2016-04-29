@@ -1,0 +1,150 @@
+HOW TO MONITOR CASSANDRA FROM THE COMMAND LINE
+(sample test routine)
+
+
+## 1. start load generation using your tool of choice (Gatling, *dbperf JAR, cassandra stress, etc)
+
+
+## 2. TERMINAL COMMANDS
+open new Terminal window and SSH to a Cassandra node (any)
+./ssh_me_calmly -i ~/.ssh/notification-test.pem -u kratos -h 52.34.11.208
+
+### TIMESTAMP
+date +%s
+
+
+
+
+
+## run the following commands
+------------------ GET STARTING STATE OF THE CLUSTER --------
+echo "NODETOOL"
+date +%s
+nodetool status notification_domain
+nodetool status sms_domain
+nodetool status app_registration_domain
+
+
+
+nodetool cfstats notification_domain
+nodetool cfstats sms_domain
+nodetool cfstats app_registration_domain
+
+nodetool tpstats
+
+### cfhistorgrams requires table names and domain
+nodetool cfhistograms sms_domain broadcast_code_lookup  
+nodetool cfhistograms sms_domain program_id_lookup  
+nodetool cfhistograms sms_domain user_phone_lookup
+nodetool cfhistograms sms_domain optin_rate_limiter     
+nodetool cfhistograms sms_domain sms_data_by_phone
+
+
+
+REGISTRATIONS>
+nodetool cfhistograms app_registration_domain user_app_info
+
+NOTIFICATIONS>
+nodetool cfhistograms notification_domain user_notifications_v2
+nodetool cfhistograms notification_domain app_lookup
+nodetool cfhistograms notification_domain notification_push_lookup
+nodetool cfhistograms notification_domain notification_stored_lookup
+nodetool cfhistograms notification_domain notification_templates
+nodetool cfhistograms notification_domain notification_type
+nodetool cfhistograms notification_domain shorty_service_auth
+nodetool cfhistograms notification_domain user_notification_count
+nodetool cfhistograms notification_domain app_lookup
+nodetool cfhistograms notification_domain notification_lookup
+
+
+nodetool compactionstats
+
+nodetool proxyhistograms
+
+
+CQL COMMANDS
+ex. (Notifications)
+select count(*) from user_notifications_v2 limit 50000;
+SELECT COUNT(*) FROM notification_push_lookup limit 50000;
+select COUNT(*) FROM notification_stored_lookup limit 50000;
+select COUNT(*) FROM user_notification_count limit 50000;
+
+ex. (Social)
+
+-----------
+### LINUX SERVER MONITORING
+
+#### execute while load is active
+top
+ iostat -x -m -t -y -z 30
+
+ ### clip part of the system.log  (wait 2-3 min, or whatever you think is good)
+date +%s
+tail -f /var/log/cassandra/system.log
+date +%s
+
+tail -F /var/log/cassandra/system.log | grep "ERROR" 
+tail -F /var/log/cassandra/system.log | grep "exceeding specified threshold" 
+tail -F /var/log/cassandra/system.log | grep "MUTATION messages dropped" 
+tail -F /var/log/cassandra/system.log | grep "READ_REPAIR messages dropped" 
+
+
+
+### spot check the logs
+### get word counts for things that have happened in the past
+grep -wc 'ERROR' /var/log/cassandra/system.log
+grep -wc 'exceeding specified threshold' /var/log/cassandra/system.log
+grep -wc 'MUTATION messages dropped' /var/log/cassandra/system.log
+grep -wc 'READ_REPAIR messages dropped' /var/log/cassandra/system.log
+
+#### if any have count > 0, find details
+grep 'ERROR' /var/log/cassandra/system.log
+grep 'exceeding specified threshold' /var/log/cassandra/system.log
+grep 'MUTATION messages dropped' /var/log/cassandra/system.log
+grep 'READ_REPAIR messages dropped' /var/log/cassandra/system.log
+
+
+
+## flush DB cluster
+nodetool flush notification_domain 
+
+nodetool flush sms_domain
+
+nodetool flush notification_domain notification_stored_lookup
+
+### close out the capture  ----------------------
+echo "Load completed"
+date +%s
+
+
+********************************
+********************************
+
+CQL QUERIES
+select count(*) from user_notifications_v2;
+
+SELECT COUNT(*) FROM notification_push_lookup;
+
+select COUNT(*) FROM notification_stored_lookup;
+
+select COUNT(*) FROM user_notification_count;
+
+*********************************
+********************************
+
+
+
+## flush DB cluster
+nodetool flush notification_domain user_notifications_v2
+
+nodetool flush notification_domain notification_push_lookup
+
+nodetool flush notification_domain notification_stored_lookup
+
+## capture a copy of your Terminal session
+use menu to "export text" to file
+
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+For more about BATCH errors, see this article> 
+http://grokbase.com/t/cassandra/user/14cb6mqfyc/batch-size-warn-threshold-in-kb
